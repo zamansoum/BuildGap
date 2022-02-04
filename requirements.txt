@@ -1,0 +1,2 @@
+termcolor==1.1.0
+python-apt==1.8.4.3 
