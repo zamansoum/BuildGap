@@ -6,4 +6,4 @@ This is mostly useful  for air gapped devices that do not have access to interne
 You can simply run the command with the package name as argument.
 
 
-Credit: This is code is based on the yusuphwickama/wickerscripts repo
+Credit: This is code is a python rewrite of the yusuphwickama/wickerscripts repo
