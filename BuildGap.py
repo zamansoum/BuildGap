@@ -10,11 +10,20 @@
 import sys
 import apt
 from termcolor import colored, cprint
+import subprocess
 
 apt.apt_pkg.init()
 cache=apt.Cache()
 cache.open()
 
+def WanChck():
+	try:
+		test=subprocess.call("ping -c 1" + " 9.9.9.9", shell=True, stdout=subprocess.DEVNULL)
+		if test !=0:
+			raise ValueError('No internet')
+	except:
+		print(colored("=>!Internet connection unavailable<=","red"))
+		sys.exit()
 
 #check if argument is provided and valid
 def chckarg(pkgname=None):
@@ -40,6 +49,7 @@ print(colored("""
 ==================================		
 """, "yellow", attrs=["dark"]))
 
+WanChck()
 pkgname=chckarg()
 #numdep=apt.Cache['apache2']
 #print(numdep)
