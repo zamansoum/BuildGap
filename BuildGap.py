@@ -45,7 +45,7 @@ def chckarg(pkgname=None):
 		sys.exit()	
 
 #Download the main package
-def	getdepend():
+def	getpkg():
 	pkg=cache[pkgname]
 	Path("/tmp/BuildGap").mkdir(parents=True, exist_ok=True)
 	pkg.candidate.fetch_binary('/tmp/BuildGap/')
@@ -60,6 +60,6 @@ print(colored("""
 
 wanchck()
 chckarg(pkgname)
-getdepend()
+getpkg()
 #numdep=apt.Cache['apache2']
 #print(numdep)
