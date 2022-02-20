@@ -15,6 +15,7 @@ import subprocess
 apt.apt_pkg.init()
 cache=apt.Cache()
 cache.open()
+pkgname = str(sys.argv[1])
 
 def WanChck():
 	try:
@@ -29,7 +30,7 @@ def WanChck():
 def chckarg(pkgname=None):
 	
 	try:
-		pkgname = str(sys.argv[1])
+		
 		print(colored(pkgname,"cyan",attrs=["underline"]), colored(" package is selected","green"))
 		
 	except: 
@@ -42,6 +43,9 @@ def chckarg(pkgname=None):
 		print(colored("=>!This package does not exist!<=","red"))
 		sys.exit()	
 
+
+#def	GetDepend():
+#	cache[pkg]
 #Print Banner
 print(colored(""" 
 ==================================
@@ -50,6 +54,6 @@ print(colored("""
 """, "yellow", attrs=["dark"]))
 
 WanChck()
-pkgname=chckarg()
+chckarg(pkgname)
 #numdep=apt.Cache['apache2']
 #print(numdep)
