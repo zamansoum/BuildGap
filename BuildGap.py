@@ -11,13 +11,13 @@ import sys
 import apt
 from termcolor import colored, cprint
 import subprocess
-
+from pathlib import Path
 apt.apt_pkg.init()
 cache=apt.Cache()
 cache.open()
 pkgname = str(sys.argv[1])
 
-def WanChck():
+def wanchck():
 	try:
 		test=subprocess.call("ping -c 1" + " 9.9.9.9", shell=True, stdout=subprocess.DEVNULL)
 		if test !=0:
@@ -39,13 +39,18 @@ def chckarg(pkgname=None):
 	try:
 		cache[pkgname]
 		return pkgname
+
 	except:
 		print(colored("=>!This package does not exist!<=","red"))
 		sys.exit()	
 
+#Download the main package
+def	getdepend():
+	pkg=cache[pkgname]
+	Path("/tmp/BuildGap").mkdir(parents=True, exist_ok=True)
+	pkg.candidate.fetch_binary('/tmp/BuildGap/')
 
-#def	GetDepend():
-#	cache[pkg]
+
 #Print Banner
 print(colored(""" 
 ==================================
@@ -53,7 +58,8 @@ print(colored("""
 ==================================		
 """, "yellow", attrs=["dark"]))
 
-WanChck()
+wanchck()
 chckarg(pkgname)
+getdepend()
 #numdep=apt.Cache['apache2']
 #print(numdep)
