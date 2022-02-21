@@ -15,7 +15,8 @@ from pathlib import Path
 apt.apt_pkg.init()
 cache=apt.Cache()
 cache.open()
-pkgname = str(sys.argv[1])
+pkgname = None
+
 
 def wanchck():
 	try:
@@ -27,10 +28,11 @@ def wanchck():
 		sys.exit()
 
 #check if argument is provided and valid
-def chckarg(pkgname=None):
+def chckarg():
 	
 	try:
-		
+		global pkgname
+		pkgname = str(sys.argv[1])
 		print(colored(pkgname,"cyan",attrs=["underline"]), colored(" package is selected","green"))
 		
 	except: 
@@ -50,6 +52,15 @@ def	getpkg():
 	Path("/tmp/BuildGap").mkdir(parents=True, exist_ok=True)
 	pkg.candidate.fetch_binary('/tmp/BuildGap/')
 
+#Download dependencies
+def getdep():
+	pkg=cache[pkgname]
+	dependencies= pkg.candidate.dependencies
+	
+	for x in range(len(dependencies)):
+		for y in range(len(dependencies[x])):
+			print(dependencies[x][y].name)
+
 
 #Print Banner
 print(colored(""" 
@@ -59,7 +70,8 @@ print(colored("""
 """, "yellow", attrs=["dark"]))
 
 wanchck()
-chckarg(pkgname)
+chckarg()
+getdep()
 getpkg()
 #numdep=apt.Cache['apache2']
 #print(numdep)
