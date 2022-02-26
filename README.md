@@ -1,5 +1,5 @@
 
-**BuildGap | Download Debian packages for your air gapped devices**
+**(WORK IN PROGRESS) BuildGap | Download Debian packages for your air gapped devices**
 ------------------------------------------------------------------------
 BuildGap will download the selected apt package and its dependencies in a tar ball. 
 This is mostly useful  for air gapped devices that do not have access to internet. 
