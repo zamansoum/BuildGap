@@ -60,6 +60,9 @@ def getdep():
 	for x in range(len(dependencies)):
 		for y in range(len(dependencies[x])):
 			print(dependencies[x][y].name)
+			Currentdep=cache[dependencies[x][y].name]
+			Path("/tmp/BuildGap").mkdir(parents=True, exist_ok=True)
+			Currentdep.candidate.fetch_binary('/tmp/BuildGap/')
 
 
 #Print Banner
