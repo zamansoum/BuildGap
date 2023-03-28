@@ -80,5 +80,3 @@ wanchck()
 chckarg()
 getdep()
 getpkg()
-#numdep=apt.Cache['apache2']
-#print(numdep)
