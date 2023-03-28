@@ -59,10 +59,14 @@ def getdep():
 	
 	for x in range(len(dependencies)):
 		for y in range(len(dependencies[x])):
-			print(dependencies[x][y].name)
-			Currentdep=cache[dependencies[x][y].name]
+			depname=dependencies[x][y].name
+			print(depname)
 			Path("/tmp/BuildGap").mkdir(parents=True, exist_ok=True)
-			Currentdep.candidate.fetch_binary('/tmp/BuildGap/')
+			try:
+				Currentdep=cache[depname]
+				Currentdep.candidate.fetch_binary('/tmp/BuildGap/')
+			except:
+				print(colored(depname,"cyan",attrs=["underline"]), colored(" package could not be downloaded","red"))
 
 
 #Print Banner
