@@ -12,15 +12,16 @@ import apt
 from termcolor import colored, cprint
 import subprocess
 from pathlib import Path
+#---------------------------------------------------------------------------------------------------------
+pkgname = None
+wanip= "9.9.9.9"
+
 apt.apt_pkg.init()
 cache=apt.Cache()
 cache.open()
-pkgname = None
-
-
 def wanchck():
 	try:
-		test=subprocess.call("ping -c 1" + " 9.9.9.9", shell=True, stdout=subprocess.DEVNULL)
+		test=subprocess.call("ping -c 1 " + wanip, shell=True, stdout=subprocess.DEVNULL)
 		if test !=0:
 			raise ValueError('No internet')
 	except:
